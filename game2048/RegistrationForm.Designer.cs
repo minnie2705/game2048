@@ -30,6 +30,7 @@ namespace game2048
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(RegistrationForm));
             this.usernameTextBox = new System.Windows.Forms.TextBox();
             this.passwordTextBox = new System.Windows.Forms.TextBox();
             this.RegistrateBut = new System.Windows.Forms.Button();
@@ -102,6 +103,7 @@ namespace game2048
             this.Controls.Add(this.RegistrateBut);
             this.Controls.Add(this.passwordTextBox);
             this.Controls.Add(this.usernameTextBox);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "RegistrationForm";
             this.Text = "RegidtrationForm";
             this.ResumeLayout(false);

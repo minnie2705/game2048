@@ -22,6 +22,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(game));
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.уровеньToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.x4ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -80,11 +81,11 @@
             // 
             this.scoreLabel.AutoSize = true;
             this.scoreLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.scoreLabel.Location = new System.Drawing.Point(900, 109);
+            this.scoreLabel.Location = new System.Drawing.Point(715, 78);
             this.scoreLabel.Name = "scoreLabel";
-            this.scoreLabel.Size = new System.Drawing.Size(102, 32);
+            this.scoreLabel.Size = new System.Drawing.Size(127, 32);
             this.scoreLabel.TabIndex = 18;
-            this.scoreLabel.Text = "Score:";
+            this.scoreLabel.Text = "Score: 0";
             this.scoreLabel.Click += new System.EventHandler(this.ScoreLabel_Click);
             // 
             // game
@@ -95,6 +96,7 @@
             this.ClientSize = new System.Drawing.Size(1148, 591);
             this.Controls.Add(this.scoreLabel);
             this.Controls.Add(this.menuStrip1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "game";

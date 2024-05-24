@@ -33,20 +33,25 @@ namespace game2048
             NewMap();
             CreatePicture();
             GenPic();
-            
 
+            //scoreLabel = new Label();
+            //scoreLabel.Location = new Point(12, 80);
+            //scoreLabel.Size = new Size(200, 30);
+            //scoreLabel.Text = "Score: 0";
+            //this.Controls.Add(scoreLabel);
 
         }
+
+        private void Form1_Load(object sender, EventArgs e) { }
         private void UpdateScoreLabel()
         {
             scoreLabel.Text = "Score: " + score.ToString();
         }
+
         private void FormClosingHandler(object sender, FormClosingEventArgs e)
         {
             SaveScore(username, score);
         }
-
-        private void Form1_Load(object sender, EventArgs e) { }
 
         private void NewMap()
         {
@@ -59,6 +64,11 @@ namespace game2048
                     picture.Size = new Size(50, 50);
                     picture.BackColor = Color.Moccasin;
                     this.Controls.Add(picture);
+                    scoreLabel = new Label();
+                    scoreLabel.Location = new Point(12, 80); // Поместите счёт в нужное место
+                    scoreLabel.Size = new Size(200, 50);
+                    scoreLabel.Text = "Score: 0";
+                    this.Controls.Add(scoreLabel);
                 }
             }
         }
@@ -188,6 +198,7 @@ namespace game2048
                                         labels[k, j - 1] = null;
                                         map[k, j - 1] = 0;
                                         ifPictureMove = true;
+                                        UpdateScoreLabel();
                                         break;
                                     }
                                     else
@@ -234,6 +245,7 @@ namespace game2048
                                         labels[k, j + 1] = null;
                                         map[k, j + 1] = 0;
                                         ifPictureMove = true;
+                                        UpdateScoreLabel();
                                         break;
                                     }
                                     else
@@ -280,6 +292,7 @@ namespace game2048
                                         labels[j - 1, l] = null;
                                         map[j - 1, l] = 0;
                                         ifPictureMove = true;
+                                        UpdateScoreLabel();
                                         break;
                                     }
                                     else
@@ -327,6 +340,7 @@ namespace game2048
                                         labels[j + 1, l] = null;
                                         map[j + 1, l] = 0;
                                         ifPictureMove = true;
+                                        UpdateScoreLabel();
                                         break;
                                     }
                                     else
