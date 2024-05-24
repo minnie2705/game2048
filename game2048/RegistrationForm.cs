@@ -76,8 +76,6 @@ namespace game2048
         {
             string filePath = "users.txt";
 
-            try
-            {
                 string[] lines = File.ReadAllLines(filePath);
 
                 foreach (string line in lines)
@@ -96,11 +94,6 @@ namespace game2048
                         }
                     }
                 }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("Ошибка при чтении файла с учетными данными: " + ex.Message);
-            }
 
             return false;
         }

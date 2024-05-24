@@ -15,6 +15,7 @@ namespace game2048
 
         static string username;
         static string password;
+        
 
         [STAThread]
         static void Main()
@@ -29,6 +30,7 @@ namespace game2048
                 {
                     username = registrationForm.Username;
                     password = registrationForm.Password;
+                    
 
                     if (CheckUsernameExists(username))
                     {
@@ -40,7 +42,7 @@ namespace game2048
 
                     SaveUserData(username, password);
 
-                    Application.Run(new game());
+                    Application.Run(new game(username));
                 }
                 else
                 {
@@ -53,19 +55,13 @@ namespace game2048
         {
             string filePath = "users.txt";
 
-            try
-            {
                 using (StreamWriter writer = new StreamWriter(filePath, true))
                 {
                     writer.WriteLine($"{username},{password}");
                 }
 
                 Console.WriteLine("Данные пользователя сохранены успешно.");
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("Ошибка при сохранении данных пользователя: " + ex.Message);
-            }
+            
         }
 
         public static bool CheckUsernameExists(string username)
