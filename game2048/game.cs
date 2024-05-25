@@ -14,6 +14,7 @@ namespace game2048
         public Label[,] labels;
         public PictureBox[,] pic;
         public int score = 0;
+        public int bestScore = 0;
         public string username;
         
 
@@ -39,7 +40,13 @@ namespace game2048
         private void Form1_Load(object sender, EventArgs e) { }
         private void UpdateScoreLabel()
         {
-            scoreLabel.Text = "Score: " + score.ToString();
+            scoreLabel.Text = $"Score: {score}";
+            this.Controls.Add(scoreLabel);
+        }
+        private void UpdateBestScoreLabel()
+        {
+            bestScoreLabel.Text = $"Best Score: {bestScore}";
+            this.Controls.Add(bestScoreLabel);
         }
 
         private void FormClosingHandler(object sender, FormClosingEventArgs e)
@@ -58,12 +65,24 @@ namespace game2048
                     picture.Size = new Size(50, 50);
                     picture.BackColor = Color.Moccasin;
                     this.Controls.Add(picture);
-                    scoreLabel = new Label();
-                    scoreLabel.Location = new Point(12, 80);
-                    scoreLabel.Size = new Size(200, 50);
-                    scoreLabel.Text = "Score: 0";
-                    this.Controls.Add(scoreLabel);
                 }
+            }
+
+            if (scoreLabel == null)
+            {
+                scoreLabel = new Label();
+                scoreLabel.Location = new Point(12, 80);
+                scoreLabel.Size = new Size(200, 50);
+                scoreLabel.Text = "Score: 0";
+                this.Controls.Add(scoreLabel);
+            }
+            if (bestScoreLabel == null)
+            {
+                Label bestScoreLabel = new Label();
+                bestScoreLabel.Location = new Point(12, 20);
+                bestScoreLabel.Size = new Size(200, 50);
+                bestScoreLabel.Text = $"Best Score: {LoadBestScore()}";
+                this.Controls.Add(bestScoreLabel);
             }
         }
 
@@ -146,11 +165,42 @@ namespace game2048
         private void SaveScore(string username, int score)
         {
             string filePath = "scores.txt";
+            int bestScore = LoadBestScore();
+            if(score> bestScore)
+            {
+                bestScore = score;
+                using (StreamWriter writer = new StreamWriter(filePath))
+                {
+                    writer.WriteLine($"BestScore,{bestScore}");
+                }
+            }
 
             using (StreamWriter writer = new StreamWriter(filePath, true))
             {
                 writer.WriteLine($"{username},{score}");
             }
+        }
+
+        private int LoadBestScore()
+        {
+            string filePath = "scores.txt";
+            int bestScore = 0;
+
+            if (File.Exists(filePath))
+            {
+                string[] lines = File.ReadAllLines(filePath);
+                foreach (string line in lines)
+                {
+                    string[] parts = line.Split(',');
+                    if (parts.Length == 2 && parts[0] == "BestScore")
+                    {
+                        int.TryParse(parts[1], out bestScore);
+                        break;
+                    }
+                }
+            }
+
+            return bestScore;
         }
 
         private void PressKeyboard(object sender, KeyEventArgs e)
@@ -360,6 +410,7 @@ namespace game2048
             {
                 GenPic();
                 UpdateScoreLabel();
+                UpdateBestScoreLabel();
             }
 
         }
@@ -429,6 +480,7 @@ namespace game2048
             CreatePicture();
             GenPic();
             UpdateScoreLabel();
+            UpdateBestScoreLabel();
         }
 
         private void ScoreLabel_Click(object sender, EventArgs e)

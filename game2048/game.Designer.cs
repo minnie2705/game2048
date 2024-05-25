@@ -29,6 +29,7 @@
             this.x5ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.x6ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.scoreLabel = new System.Windows.Forms.Label();
+            this.bestScoreLabel = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -88,12 +89,23 @@
             this.scoreLabel.Text = "Score: 0";
             this.scoreLabel.Click += new System.EventHandler(this.ScoreLabel_Click);
             // 
+            // bestScoreLabel
+            // 
+            this.bestScoreLabel.AutoSize = true;
+            this.bestScoreLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.bestScoreLabel.Location = new System.Drawing.Point(722, 134);
+            this.bestScoreLabel.Name = "bestScoreLabel";
+            this.bestScoreLabel.Size = new System.Drawing.Size(196, 32);
+            this.bestScoreLabel.TabIndex = 19;
+            this.bestScoreLabel.Text = "Best Score: 0";
+            // 
             // game
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Tan;
             this.ClientSize = new System.Drawing.Size(1148, 591);
+            this.Controls.Add(this.bestScoreLabel);
             this.Controls.Add(this.scoreLabel);
             this.Controls.Add(this.menuStrip1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -116,6 +128,7 @@
         private System.Windows.Forms.ToolStripMenuItem x5ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem x6ToolStripMenuItem;
         public System.Windows.Forms.Label scoreLabel;
+        private System.Windows.Forms.Label bestScoreLabel;
     }
 }
 
